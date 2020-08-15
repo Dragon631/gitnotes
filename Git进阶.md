@@ -228,6 +228,54 @@
   - git push -u origin master
     - 将本地的master分支推送到远程origin中
     - 第一次推送需要指定origin和master，以后可以直接使用git push命令
-  - git remote show origin
-    - 查看远程库地址
+  - git remote show
+    - 查看远程库列表
+    - git remote show origin 查看origin远程库
+  - git clone  git@github.com:githubaccount/project.git
+    - 项目名为project
+  - git clone  git@github.com:githubaccount/project.git project2
+    - 修改项目名为project2
 
+- 开发
+  - dev：开发分支，频繁改变
+  - test：基本开发完毕后，交给测试实施人员的分支
+  - master：生产阶段，最后合并，很少变化
+  - bugfix：临时修复bug分支
+- 查看所有分支（本地+远程）
+  - git branch -a 
+  - git branch -av
+- 有冲突
+  - pull = fetch + merge
+  - merge
+    - vi 解决冲突-> git add. -> commit
+  - pull -> vi -> add -> commit -> push
+
+# 图形工具
+
+git gui、gitk、github desktop
+
+
+
+- 查看Github分支的日志
+  - git log refs/remotes/origin/master
+  - 分支就是一个指针，为commit的sha1值
+
+- 分支
+  - 本地分支
+    - 本地->远程
+      - git push
+        - 方法1
+          - git push -u origin dev
+        - 方法2
+          - git push --set-upstream origin dev
+  - 远程分支
+    - 远程->本地
+      - pull : 远程->追踪
+      - 追踪-本地
+        - 方法1：
+          - git checkout -b dev origin/dev
+        - 方法2：
+          - git checkout -b dev --track origin/dev
+          - git checkout --track origin/dev  (简写)
+  - 本地的远程分支
+    - 追踪分支（origin/分支），默认：origin/master
